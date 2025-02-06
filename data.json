@@ -1,0 +1,214 @@
+{
+    "welcome_text": "Welcome to the Squid game for programmers, nerds, and computer science ethusiasts.\nThis game is a simple game that will test your knowledge of computer science concepts.\nYou must score 18 points and above to win the game or else you will face the consequences.\nGood luck and have fun.\n",
+    "readme_context": "Your files have been encrypted as you joined a game that you couldn't win. Play the game again and try to get the wanted score so as to decrypt your files.\n.Do not temper with the encrypted files as it might interfere with the decryption process \nDo not delete any file before your files are decrypted as it might be containing the key used to decrypt your files.\nGood luck",
+    "folders": [
+        "Downloads",
+        "Documents",
+        "Pictures",
+        "Videos",
+        "Music"
+    ],
+    "questions": {
+        "1": {
+            "question": "What does 'URL' stand for?",
+            "answers": {
+                "A": "Universal Resource Locator",
+                "B": "Universal Resource Link",
+                "C": "Universal Resource Location",
+                "D": "Universal Resource Language"
+            },
+            "correct": "A"
+        },
+        "2": {
+            "question": "What is the purpose of cache memory?",
+            "answers": {
+                "A": "To provide temporary storage for frequently accessed data",
+                "B": "To store the operating system permanently",
+                "C": "To store the user's personal files",
+                "D": "To store the computer's hardware configuration"
+            },
+            "correct": "A"
+        },
+        "3": {
+            "question": "What is the purpose of the 'if' statement in programming?",
+            "answers": {
+                "A": "To execute a block of code regardless of any condition",
+                "B": "To execute a block of code only if a certain condition is false",
+                "C": "To execute a block of code only if a certain condition is true",
+                "D": "To execute a block of code repeatedly"
+            },
+            "correct": "C"
+        },
+        "4": {
+            "question": "What is the purpose of a webserver?",
+            "answers": {
+                "A": "To provide internet access to users",
+                "B": "To store and manage files for a website",
+                "C": "To display advertisements on a website",
+                "D": "To provide email services"
+            },
+            "correct": "B"
+        },
+        "5": {
+            "question": "What is the purpose of an algorithm?",
+            "answers": {
+                "A": "To store data in an organized way",
+                "B": "To design a sequence of operations",
+                "C": "To create a set of rules for a computer to follow",
+                "D": "To solve a problem or perform a task in a step-by-step manner"
+            },
+            "correct": "D"
+        },
+        "6": {
+            "question": "Which type of memory is typically the fastest?",
+            "answers": {
+                "A": "RAM",
+                "B": "ROM",
+                "C": "Cache",
+                "D": "Hard Disk Drive"
+            },
+            "correct": "C"
+        },
+        "7": {
+            "question": "Which of the following best describes the function of a router?",
+            "answers": {
+                "A": "To connect multiple devices within a single computer",
+                "B": "To translate domain names into IP addresses",
+                "C": "To direct network traffic between different networks",
+                "D": "To store and retrieve files from a central location"
+            },
+            "correct": "C"
+        },
+        "8": {
+            "question": "What is the purpose of a database schema?",
+            "answers": {
+                "A": "To define the structure and relationships of data within a database",
+                "B": "To store the actual data within a database",
+                "C": "To query and retrieve data from a database",
+                "D": "To ensure data security within a database"
+            },
+            "correct": "A"
+        },
+        "9": {
+            "question": "Which of the following is NOT a fundamental principle of object-oriented programming?",
+            "answers": {
+                "A": "Inheritance",
+                "B": "Polymorphism",
+                "C": "Abstraction",
+                "D": "Compilation"
+            },
+            "correct": "D"
+        },
+        "10": {
+            "question": "What is the main difference between a compiler and an interpreter?",
+            "answers": {
+                "A": "Compilers are faster than interpreters.",
+                "B": "Interpreters are used for high-level languages, while compilers are used for low-level languages.",
+                "C": "Compilers translate code into machine code all at once, while interpreters translate it line by line.",
+                "D": "Compilers require more memory than interpreters."
+            },
+            "correct": "C"
+        },
+        "11": {
+            "question": "What is the primary purpose of a firewall?",
+            "answers": {
+                "A": "To prevent viruses from infecting a computer",
+                "B": "To encrypt data transmitted over a network",
+                "C": "To control network traffic and block unauthorized access",
+                "D": "To speed up internet connection speeds"
+            },
+            "correct": "C"
+        },
+        "12": {
+            "question": "Which of the following is NOT a core component of the Central Processing Unit (CPU)?",
+            "answers": {
+                "A": "Arithmetic Logic Unit (ALU)",
+                "B": "Control Unit (CU)",
+                "C": "Memory Unit",
+                "D": "Register"
+            },
+            "correct": "C"
+        },
+        "13": {
+            "question": "What is the purpose of a proxy server?",
+            "answers": {
+                "A": "To prevent users from accessing certain websites",
+                "B": "To improve website loading speed",
+                "C": "To encrypt data transmitted over a network",
+                "D": "To create backups of important files"
+            },
+            "correct": "B"
+        },
+        "14": {
+            "question": "What is the purpose of a proxy server?",
+            "answers": {
+                "A": "To prevent users from accessing certain websites",
+                "B": "To improve website loading speed",
+                "C": "To encrypt data transmitted over a network",
+                "D": "To create backups of important files"
+            },
+            "correct": "B"
+        },
+        "15": {
+            "question": "What is the purpose of a hash table?",
+            "answers": {
+                "A": "To sort data in ascending order",
+                "B": "To store and retrieve data efficiently using key-value pairs",
+                "C": "To implement a stack data structure",
+                "D": "To create a backup of data"
+            },
+            "correct": "B"
+        },
+        "16": {
+            "question": "What is the concept of recursion in the context of programming?",
+            "answers": {
+                "A": "A programming technique where a function calls itself, either directly or indirectly.",
+                "B": "A loop that repeats a block of code a specific number of times.",
+                "C": "A data structure used to represent hierarchical relationships.",
+                "D": "A method for encrypting data."
+            },
+            "correct": "A"
+        },
+        "17": {
+            "question": "What is the difference between a static variable and a dynamic variable?",
+            "answers": {
+                "A": "A static variable has a fixed memory location, while a dynamic variable's memory location is allocated at runtime.",
+                "B": "A dynamic variable has a fixed memory location, while a static variable's memory location is allocated at runtime.",
+                "C": "Static variables are used for local variables, while dynamic variables are used for global variables.",
+                "D": "There is no significant difference between them."
+            },
+            "correct": "A"
+        },
+        "18": {
+            "question": "Which data structure follows the LIFO (Last-In, First-Out) principle?",
+            "answers": {
+                "A": "Queue",
+                "B": "Stack",
+                "C": "Linked List",
+                "D": "Tree"
+            },
+            "correct": "B"
+        },
+        "19": {
+            "question": "What is the purpose of TCP/IP?",
+            "answers": {
+                "A": "To define rules and formats for communication over a network.",
+                "B": "To encrypt data transmitted over a network.",
+                "C": "To create and manage user accounts.",
+                "D": "To store and manage web pages."
+            },
+            "correct": "A"
+        },
+        "20": {
+            "question": "What is the difference between supervised and unsupervised learning?",
+            "answers": {
+                "A": "Supervised learning involves training a model on labeled data, while unsupervised learning involves training a model on unlabeled data.",
+                "B": "Supervised learning is used for classification tasks, while unsupervised learning is used for regression tasks.",
+                "C": "Supervised learning is more complex than unsupervised learning.",
+                "D": "There is no significant difference between them."
+            },
+            "correct": "A"
+        }
+    },
+    "key": "b'VNCaUqVBGh2TKMsrHc7iWtjuN0GoZEdzUClcZSRG1nY='"
+}
