@@ -275,7 +275,7 @@ class TriviaFrame(ctk.CTkFrame):
         self.grid_rowconfigure(1, weight=1)
         self.grid_columnconfigure(0, weight=1)
 
-        self.score = 20
+        self.score = 0
         self._data = data
         self._qtn_num = 1
 
