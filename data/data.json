@@ -130,14 +130,14 @@
             "correct": "C"
         },
         "13": {
-            "question": "What is the purpose of a proxy server?",
+            "question": "What is the purpose of a confusion matrix in machine learning?",
             "answers": {
-                "A": "To prevent users from accessing certain websites",
-                "B": "To improve website loading speed",
-                "C": "To encrypt data transmitted over a network",
-                "D": "To create backups of important files"
+                "A": "To visualize the performance of a classification algorithm",
+                "B": "To store training data for a machine learning model",
+                "C": "To optimize the hyperparameters of a machine learning model",
+                "D": "To split the dataset into training and testing sets"
             },
-            "correct": "B"
+            "correct": "A"
         },
         "14": {
             "question": "What is the purpose of a proxy server?",
@@ -210,5 +210,5 @@
             "correct": "A"
         }
     },
-    "key": "b'VNCaUqVBGh2TKMsrHc7iWtjuN0GoZEdzUClcZSRG1nY='"
+    "key": null
 }
