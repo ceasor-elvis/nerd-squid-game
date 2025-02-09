@@ -29,6 +29,13 @@ A nerd's version of the Squid Game for programmers, nerds, and computer science 
     pip install -r requirements.txt
     ```
 
+## Screenshots
+
+Here are some screenshots of the game in action:
+
+![Screenshot 1](data/screenshot_1.png)
+![Screenshot 2](data/screenshot_2.png)
+
 ## Disclaimer
 
 This game is for educational purposes only. The encryption feature is a simulation and should not be used to encrypt sensitive data.
